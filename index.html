@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PTG Store - Cày thuê FF & Play Together</title>
+<title>AK STORE – Nhận cày thuê FF & PTG | Uy tín</title>
 
 <meta name="description"
-content="PTG Store - Cày thuê Free Fire và Play Together. Đặt đơn nhanh chóng.">
+content="AK STORE – Nhận cày thuê Free Fire và Play Together uy tín, đặt đơn nhanh chóng.">
 
 <style>
 *{
@@ -259,6 +259,17 @@ textarea{
     line-height:1.5;
 }
 
+.paid{
+    background:#e9f9ee;
+    border:1px solid #b8e8c7;
+    color:#16803c;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:12px;
+    font-weight:bold;
+    text-align:center;
+}
+
 footer{
     text-align:center;
     padding:30px 15px;
@@ -275,10 +286,9 @@ footer{
 <body>
 
 <header>
-    <h1>🔥 PTG STORE</h1>
-    <p>Cày thuê Free Fire • Play Together</p>
+    <h1>🔥 AK STORE</h1>
+    <p>Nhận cày thuê FF & PTG • Uy tín</p>
 </header>
-
 
 <div class="container">
 
@@ -297,14 +307,11 @@ onclick="showService('ptg',this)">
 </div>
 
 
-<!-- ================================================= -->
 <!-- ======================= FF ====================== -->
-<!-- ================================================= -->
 
 <div id="ff" class="card">
 
 <h2>🔥 ĐẶT CÀY THUÊ FREE FIRE</h2>
-
 
 <div class="form-group">
 
@@ -312,8 +319,7 @@ onclick="showService('ptg',this)">
 Xếp hạng hiện tại <span class="required">*</span>
 </label>
 
-<select id="ffCurrentRank"
-onchange="calcFF()">
+<select id="ffCurrentRank" onchange="calcFF()">
 
 <option value="0">Vàng IV</option>
 <option value="1">Vàng III</option>
@@ -344,8 +350,7 @@ onchange="calcFF()">
 DS mong muốn <span class="required">*</span>
 </label>
 
-<select id="ffTargetRank"
-onchange="calcFF()">
+<select id="ffTargetRank" onchange="calcFF()">
 
 <option value="1">Vàng III</option>
 <option value="2">Vàng II</option>
@@ -375,11 +380,12 @@ onchange="calcFF()">
 Loại xếp hạng <span class="required">*</span>
 </label>
 
-<label>Loại xếp hạng</label>
 <select id="rankType" required>
-  <option value="">-- Chọn loại xếp hạng --</option>
-  <option value="Sinh tồn">Sinh tồn</option>
-  <option value="Tử chiến">Tử chiến</option>
+
+<option value="">-- Chọn loại xếp hạng --</option>
+<option value="Sinh tồn">Sinh tồn</option>
+<option value="Tử chiến">Tử chiến</option>
+
 </select>
 
 </div>
@@ -479,7 +485,6 @@ Tổng tiền:
 
 </div>
 
-
 <div class="qr-box">
 
 <img
@@ -494,6 +499,11 @@ Sau khi chuyển khoản, bấm "Đã chuyển khoản".
 
 </div>
 
+</div>
+
+
+<div id="ffPaidBox" class="paid hidden">
+✅ Đã ghi nhận bạn đã chuyển khoản
 </div>
 
 
@@ -526,10 +536,7 @@ onclick="orderFF()">
 </div>
 
 
-
-<!-- ================================================= -->
 <!-- ======================= PTG ===================== -->
-<!-- ================================================= -->
 
 <div id="ptg" class="card hidden">
 
@@ -570,8 +577,6 @@ autocomplete="off">
 🔒 Mật khẩu chỉ được nhập trên thiết bị của khách và
 <b>không được gửi hoặc lưu vào Google Sheets</b>.
 
-Shop sẽ hướng dẫn cách bàn giao tài khoản riêng.
-
 </div>
 
 
@@ -581,7 +586,6 @@ Shop sẽ hướng dẫn cách bàn giao tài khoản riêng.
 Bạn muốn cày gì?
 <span class="required">*</span>
 </label>
-
 
 <div class="service-list">
 
@@ -875,7 +879,6 @@ onchange="calcPTG()">
 
 
 </div>
-
 </div>
 
 
@@ -963,6 +966,11 @@ Sau khi chuyển khoản, bấm "Đã chuyển khoản".
 </div>
 
 
+<div id="ptgPaidBox" class="paid hidden">
+✅ Đã ghi nhận bạn đã chuyển khoản
+</div>
+
+
 <button
 class="btn payment-btn"
 onclick="markPaid('ptg')">
@@ -995,9 +1003,8 @@ onclick="orderPTG()">
 
 
 <footer>
-© 2026 PTG Store • Cày thuê FF & Play Together
+© 2026 AK STORE • Nhận cày thuê FF & PTG • Uy tín
 </footer>
-
 
 
 <script>
@@ -1067,10 +1074,14 @@ return Number(number)
 
 function createQR(amount,game){
 
+if(!amount || amount <= 0){
+return;
+}
+
 let info =
 game === "FF"
-? "PTG FF " + Date.now()
-: "PTG PTG " + Date.now();
+? "AK STORE FF"
+: "AK STORE PTG";
 
 let qrURL =
 "https://img.vietqr.io/image/"
@@ -1151,7 +1162,8 @@ document.getElementById("ffSteps")
 .innerText = steps;
 
 document.getElementById("ffPrice")
-.innerText = formatMoney(price);
+.innerText =
+formatMoney(price);
 
 createQR(price,"FF");
 
@@ -1178,7 +1190,8 @@ total += Number(item.dataset.price);
 });
 
 document.getElementById("ptgCount")
-.innerText = selected.length;
+.innerText =
+selected.length;
 
 document.getElementById("ptgPrice")
 .innerText =
@@ -1208,6 +1221,9 @@ if(game === "ff"){
 
 ffPaid = true;
 
+document.getElementById("ffPaidBox")
+.classList.remove("hidden");
+
 alert(
 "✅ Đã ghi nhận!\n\n"+
 "Shop sẽ kiểm tra giao dịch MB Bank và xác nhận đơn."
@@ -1216,6 +1232,9 @@ alert(
 }else{
 
 ptgPaid = true;
+
+document.getElementById("ptgPaidBox")
+.classList.remove("hidden");
 
 alert(
 "✅ Đã ghi nhận!\n\n"+
@@ -1245,6 +1264,10 @@ method:"POST",
 
 mode:"no-cors",
 
+headers:{
+"Content-Type":"text/plain;charset=utf-8"
+},
+
 body:JSON.stringify(data)
 
 })
@@ -1253,7 +1276,7 @@ body:JSON.stringify(data)
 
 alert(
 "✅ ĐẶT ĐƠN THÀNH CÔNG!\n\n"+
-"Shop đã nhận được thông tin đơn.\n"+
+"AK STORE đã nhận được thông tin đơn.\n"+
 "Shop sẽ kiểm tra thanh toán và liên hệ xác nhận."
 );
 
@@ -1276,8 +1299,8 @@ button.innerText =
 .catch(function(){
 
 alert(
-"❌ Không gửi được đơn.\n"+
-"Vui lòng thử lại!"
+"❌ Không gửi được đơn.\n\n"+
+"Vui lòng kiểm tra kết nối và thử lại!"
 );
 
 button.disabled = false;
@@ -1309,47 +1332,65 @@ let account =
 document.getElementById("ffAccount")
 .value.trim();
 
+
+let targetSelect =
+document.getElementById("ffTargetRank");
+
+let currentSelect =
+document.getElementById("ffCurrentRank");
+
+
 let target =
-document.getElementById("ffTargetRank")
-.options[
-document.getElementById("ffTargetRank").selectedIndex
+targetSelect.options[
+targetSelect.selectedIndex
 ].text;
+
 
 let current =
-document.getElementById("ffCurrentRank")
-.options[
-document.getElementById("ffCurrentRank").selectedIndex
+currentSelect.options[
+currentSelect.selectedIndex
 ].text;
 
+
+/* ĐÃ SỬA LỖI Ở ĐÂY */
+
 let rankType =
-document.getElementById("ffRankType")
+document.getElementById("rankType")
 .value;
+
 
 let accountNeed =
 document.getElementById("ffAccountNeed")
 .value.trim();
 
+
 let contact =
 document.getElementById("ffContact")
 .value.trim();
+
 
 let time =
 document.getElementById("ffTime")
 .value;
 
+
 let note =
 document.getElementById("ffNote")
-.value;
+.value.trim();
+
 
 let steps =
 Number(
 document.getElementById("ffSteps").innerText
 );
 
+
 let price =
 document.getElementById("ffPrice")
 .innerText;
 
+
+/* KIỂM TRA TÀI KHOẢN + LIÊN HỆ */
 
 if(!account || !contact){
 
@@ -1364,6 +1405,23 @@ return;
 }
 
 
+/* KIỂM TRA LOẠI RANK */
+
+if(!rankType){
+
+alert(
+"⚠️ Vui lòng chọn loại xếp hạng:\n\n"+
+"- Sinh tồn\n"+
+"- Tử chiến"
+);
+
+return;
+
+}
+
+
+/* KIỂM TRA SỐ BẬC */
+
 if(steps <= 0){
 
 alert(
@@ -1374,6 +1432,8 @@ return;
 
 }
 
+
+/* GỬI ĐƠN */
 
 sendOrder({
 
@@ -1422,22 +1482,27 @@ let account =
 document.getElementById("ptgAccount")
 .value.trim();
 
+
 let contact =
 document.getElementById("ptgContact")
 .value.trim();
+
 
 let time =
 document.getElementById("ptgTime")
 .value;
 
+
 let note =
 document.getElementById("ptgNote")
-.value;
+.value.trim();
+
 
 let selected =
 document.querySelectorAll(
 'input[name="ptgService"]:checked'
 );
+
 
 let services = [];
 
@@ -1448,10 +1513,13 @@ selected.forEach(function(item){
 
 services.push(item.value);
 
-total += Number(item.dataset.price);
+total +=
+Number(item.dataset.price);
 
 });
 
+
+/* KIỂM TRA */
 
 if(!account || !contact){
 
@@ -1477,21 +1545,26 @@ return;
 }
 
 
+/* GỬI ĐƠN */
+
 sendOrder({
 
 game:"Play Together",
 
 account:account,
 
-service:services.join(", "),
+service:
+services.join(", "),
 
-serviceCount:services.length,
+serviceCount:
+services.length,
 
 contact:contact,
 
 time:time,
 
-price:formatMoney(total),
+price:
+formatMoney(total),
 
 paymentMethod:"MB Bank",
 
