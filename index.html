@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PTG Store - Cày thuê FF & Play Together</title>
+
+<meta name="description"
+content="PTG Store - Dịch vụ cày thuê Free Fire và Play Together. Chọn dịch vụ, xem giá và gửi yêu cầu nhanh chóng.">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f6f6f6;
+    color:#222;
+}
+
+.container{
+    max-width:760px;
+    margin:auto;
+    padding:15px;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#ff6b35,#ff8b55);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+    border-radius:0 0 25px 25px;
+}
+
+.header h1{
+    margin:0;
+    font-size:32px;
+}
+
+.header p{
+    margin:10px 0 0;
+}
+
+/* MENU */
+.menu{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin:20px 0;
+}
+
+.menu button{
+    background:white;
+    color:#333;
+    border:2px solid #eee;
+    padding:20px 10px;
+    border-radius:15px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.menu button.active{
+    border-color:#ff6b35;
+    color:#ff6b35;
+}
+
+/* BOX */
+.box{
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    margin-bottom:15px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.box h2{
+    color:#ff6b35;
+    margin-top:0;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin:17px 0 8px;
+}
+
+select,
+input{
+    width:100%;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:9px;
+    font-size:16px;
+    background:white;
+}
+
+.option{
+    padding:12px 0;
+    font-size:16px;
+}
+
+.option input{
+    width:auto;
+    margin-right:8px;
+}
+
+.price{
+    background:#fff3ed;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    margin-top:20px;
+}
+
+.price-title{
+    color:#777;
+    font-size:14px;
+}
+
+.price-number{
+    color:#ff6b35;
+    font-size:30px;
+    font-weight:bold;
+    margin-top:7px;
+}
+
+.main-button{
+    width:100%;
+    padding:17px;
+    margin-top:18px;
+    border:0;
+    border-radius:9px;
+    background:#ff6b35;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.main-button:hover{
+    opacity:.9;
+}
+
+/* PLAY TOGETHER */
+.hidden{
+    display:none;
+}
+
+.info{
+    background:#fafafa;
+    border-radius:10px;
+    padding:15px;
+    margin-top:15px;
+    line-height:1.6;
+}
+
+.contact{
+    text-align:center;
+    padding:20px;
+}
+
+.contact a{
+    display:inline-block;
+    padding:12px 22px;
+    margin:5px;
+    border-radius:8px;
+    background:#222;
+    color:white;
+    text-decoration:none;
+}
+
+.footer{
+    text-align:center;
+    color:#888;
+    padding:25px 10px;
+    font-size:14px;
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>🔥 PTG STORE</h1>
+
+    <p>
+        Cày thuê Free Fire • Play Together
+    </p>
+
+</div>
+
+
+<!-- CHỌN DỊCH VỤ -->
+
+<div class="menu">
+
+    <button
+        id="ffBtn"
+        class="active"
+        onclick="showService('ff')">
+
+        🔥<br>
+        CÀY THUÊ FF
+
+    </button>
+
+
+    <button
+        id="ptBtn"
+        onclick="showService('pt')">
+
+        🎮<br>
+        PLAY TOGETHER
+
+    </button>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- CÀY THUÊ FF -->
+<!-- ========================= -->
+
+<div id="ffService">
+
+<div class="box">
+
+    <h2>🔥 CÀY THUÊ FREE FIRE</h2>
+
+    <label>
+        Xếp hạng hiện tại *
+    </label>
+
+    <select id="currentRank">
+
+        <option value="0">
+            Vàng IV
+        </option>
+
+        <option value="15000">
+            Bạch Kim IV
+        </option>
+
+        <option value="30000">
+            Bạch Kim I
+        </option>
+
+        <option value="50000">
+            Kim Cương IV
+        </option>
+
+        <option value="70000">
+            Kim Cương I
+        </option>
+
+        <option value="90000">
+            Huyền Thoại
+        </option>
+
+    </select>
+
+
+    <label>
+        Xếp hạng mong muốn *
+    </label>
+
+    <select id="targetRank">
+
+        <option value="30000">
+            Bạch Kim I
+        </option>
+
+        <option value="50000">
+            Kim Cương IV
+        </option>
+
+        <option value="70000">
+            Kim Cương I
+        </option>
+
+        <option value="90000">
+            Huyền Thoại
+        </option>
+
+        <option value="120000">
+            Đại Cao Thủ
+        </option>
+
+    </select>
+
+
+    <label>
+        Loại xếp hạng *
+    </label>
+
+    <select id="mode">
+
+        <option value="0">
+            Solo
+        </option>
+
+        <option value="10000">
+            Duo
+        </option>
+
+        <option value="15000">
+            Squad
+        </option>
+
+    </select>
+
+
+    <label>
+        Tùy chọn mở rộng
+    </label>
+
+
+    <div class="option">
+
+        <label style="font-weight:normal">
+
+            <input
+                type="checkbox"
+                id="fast">
+
+            ⚡ Cày siêu tốc +35%
+
+        </label>
+
+    </div>
+
+
+    <div class="option">
+
+        <label style="font-weight:normal">
+
+            <input
+                type="checkbox"
+                id="schedule">
+
+            🕐 Đặt lịch cày
+
+        </label>
+
+    </div>
+
+
+    <label>
+        Facebook / Zalo / Số điện thoại *
+    </label>
+
+    <input
+        type="text"
+        id="ffContact"
+        placeholder="Nhập thông tin liên hệ">
+
+
+    <div class="price">
+
+        <div class="price-title">
+            GIÁ DỰ KIẾN
+        </div>
+
+        <div
+            class="price-number"
+            id="ffPrice">
+
+            50.000đ
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="main-button"
+        onclick="createFFOrder()">
+
+        🛒 THUÊ CÀY NGAY
+
+    </button>
+
+</div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- PLAY TOGETHER -->
+<!-- ========================= -->
+
+<div
+    id="ptService"
+    class="hidden">
+
+<div class="box">
+
+    <h2>🎮 PLAY TOGETHER</h2>
+
+    <p>
+        Chọn gói Play Together mà bạn muốn.
+    </p>
+
+
+    <label>
+        Chọn gói chơi *
+    </label>
+
+    <select id="ptPackage">
+
+        <option value="20000">
+            1 giờ - 20.000đ
+        </option>
+
+        <option value="35000">
+            2 giờ - 35.000đ
+        </option>
+
+        <option value="50000">
+            3 giờ - 50.000đ
+        </option>
+
+        <option value="80000">
+            5 giờ - 80.000đ
+        </option>
+
+    </select>
+
+
+    <label>
+        Chọn hình thức *
+    </label>
+
+    <select id="ptType">
+
+        <option value="0">
+            Chơi cùng 1 người
+        </option>
+
+        <option value="15000">
+            Chơi cùng 2 người
+        </option>
+
+        <option value="30000">
+            Chơi nhóm
+        </option>
+
+    </select>
+
+
+    <label>
+        Thời gian bắt đầu
+    </label>
+
+    <input
+        type="datetime-local"
+        id="ptTime">
+
+
+    <label>
+        Facebook / Zalo / Số điện thoại *
+    </label>
+
+    <input
+        type="text"
+        id="ptContact"
+        placeholder="Nhập thông tin liên hệ">
+
+
+    <div class="price">
+
+        <div class="price-title">
+            GIÁ DỰ KIẾN
+        </div>
+
+        <div
+            class="price-number"
+            id="ptPrice">
+
+            20.000đ
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="main-button"
+        onclick="createPTOrder()">
+
+        🎮 ĐẶT PLAY TOGETHER
+
+    </button>
+
+
+    <div class="info">
+
+        💡 Sau khi gửi yêu cầu, shop sẽ liên hệ
+        để xác nhận thời gian và đơn hàng.
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- CONTACT -->
+
+<div class="contact">
+
+    <b>💬 Cần hỗ trợ?</b>
+
+    <br>
+
+    <a href="#" onclick="return false;">
+        Facebook
+    </a>
+
+    <a href="#" onclick="return false;">
+        Zalo
+    </a>
+
+</div>
+
+
+<div class="footer">
+
+    © 2026 PTG STORE
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   CHUYỂN DỊCH VỤ
+========================= */
+
+function showService(service){
+
+    const ff =
+    document.getElementById("ffService");
+
+    const pt =
+    document.getElementById("ptService");
+
+    const ffBtn =
+    document.getElementById("ffBtn");
+
+    const ptBtn =
+    document.getElementById("ptBtn");
+
+
+    if(service === "ff"){
+
+        ff.classList.remove("hidden");
+
+        pt.classList.add("hidden");
+
+        ffBtn.classList.add("active");
+
+        ptBtn.classList.remove("active");
+
+    }
+
+
+    if(service === "pt"){
+
+        ff.classList.add("hidden");
+
+        pt.classList.remove("hidden");
+
+        ffBtn.classList.remove("active");
+
+        ptBtn.classList.add("active");
+
+    }
+
+}
+
+
+/* =========================
+   TÍNH GIÁ FF
+========================= */
+
+function calculateFFPrice(){
+
+    let current =
+    Number(
+        document.getElementById("currentRank").value
+    );
+
+
+    let target =
+    Number(
+        document.getElementById("targetRank").value
+    );
+
+
+    let mode =
+    Number(
+        document.getElementById("mode").value
+    );
+
+
+    let total =
+    Math.abs(target - current);
+
+
+    if(total < 50000){
+
+        total = 50000;
+
+    }
+
+
+    total += mode;
+
+
+    const fast =
+    document.getElementById("fast").checked;
+
+
+    if(fast){
+
+        total *= 1.35;
+
+    }
+
+
+    total =
+    Math.round(total / 1000) * 1000;
+
+
+    document.getElementById("ffPrice")
+    .innerText =
+    total.toLocaleString("vi-VN") + "đ";
+
+}
+
+
+/* =========================
+   TÍNH GIÁ PLAY TOGETHER
+========================= */
+
+function calculatePTPrice(){
+
+    let packagePrice =
+    Number(
+        document.getElementById("ptPackage").value
+    );
+
+
+    let typePrice =
+    Number(
+        document.getElementById("ptType").value
+    );
+
+
+    let total =
+    packagePrice + typePrice;
+
+
+    document.getElementById("ptPrice")
+    .innerText =
+    total.toLocaleString("vi-VN") + "đ";
+
+}
+
+
+/* =========================
+   GỬI ĐƠN FF
+========================= */
+
+function createFFOrder(){
+
+    let contact =
+    document.getElementById("ffContact")
+    .value
+    .trim();
+
+
+    if(contact === ""){
+
+        alert(
+            "Vui lòng nhập Facebook, Zalo hoặc số điện thoại!"
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "Đã ghi nhận yêu cầu cày FF. Shop sẽ liên hệ để xác nhận đơn."
+    );
+
+}
+
+
+/* =========================
+   GỬI ĐƠN PLAY TOGETHER
+========================= */
+
+function createPTOrder(){
+
+    let contact =
+    document.getElementById("ptContact")
+    .value
+    .trim();
+
+
+    if(contact === ""){
+
+        alert(
+            "Vui lòng nhập Facebook, Zalo hoặc số điện thoại!"
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "Đã ghi nhận yêu cầu Play Together. Shop sẽ liên hệ để xác nhận đơn."
+    );
+
+}
+
+
+/* =========================
+   EVENT
+========================= */
+
+document
+.getElementById("currentRank")
+.addEventListener(
+    "change",
+    calculateFFPrice
+);
+
+
+document
+.getElementById("targetRank")
+.addEventListener(
+    "change",
+    calculateFFPrice
+);
+
+
+document
+.getElementById("mode")
+.addEventListener(
+    "change",
+    calculateFFPrice
+);
+
+
+document
+.getElementById("fast")
+.addEventListener(
+    "change",
+    calculateFFPrice
+);
+
+
+document
+.getElementById("ptPackage")
+.addEventListener(
+    "change",
+    calculatePTPrice
+);
+
+
+document
+.getElementById("ptType")
+.addEventListener(
+    "change",
+    calculatePTPrice
+);
+
+
+calculateFFPrice();
+
+calculatePTPrice();
+
+</script>
+
+</body>
+</html>
